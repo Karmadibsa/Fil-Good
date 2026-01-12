@@ -1,0 +1,11 @@
+{
+    "filamentPrice": 12.0,
+    "weight": 100,
+    "printTime": 2.5,
+    "researchTimeMinutes": 15,
+    "cleaningTimeMinutes": 5,
+    "hourlyRate": 10.0,
+    "packagingCost": 0,
+    "margin": 2.5,
+    "machineHourlyCost": 0.30
+}

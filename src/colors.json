@@ -1,0 +1,154 @@
+[
+    {
+        "name": "PLA - Cyan",
+        "hex": "#06b6d4",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Magenta",
+        "hex": "#d946ef",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Jaune",
+        "hex": "#eab308",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Violet Pastel",
+        "hex": "#c4b5fd",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Transparent",
+        "hex": "#f1f5f9",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Bordeaux",
+        "hex": "#881337",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Rose",
+        "hex": "#ec4899",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Orange Pastel",
+        "hex": "#fdba74",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Orange Vif",
+        "hex": "#f97316",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Vert Vif",
+        "hex": "#22c55e",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Blanc Standard",
+        "hex": "#ffffff",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA Wood - Pin (Composite)",
+        "hex": "#d2b48c",
+        "type": "PLA Wood",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Beige Bois",
+        "hex": "#f5f5dc",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Bleu Foncé",
+        "hex": "#1e3a8a",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Noir",
+        "hex": "#000000",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Gris Clair",
+        "hex": "#cbd5e1",
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA - Pierre de Lune (Multicolore)",
+        "hex": [
+            "#fef08a",
+            "#bae6fd",
+            "#f9a8d4"
+        ],
+        "type": "PLA",
+        "brand": "Generic"
+    },
+    {
+        "name": "PETG - Transparent",
+        "hex": "#dae6f0",
+        "type": "PETG",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA Silk - Tricolore (Noir/Bleu/Violet)",
+        "hex": [
+            "#3b82f6",
+            "#000000",
+            "#8b5cf6"
+        ],
+        "type": "PLA Silk",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA Silk - Argent Foncé",
+        "hex": "#4b5563",
+        "type": "PLA Silk",
+        "brand": "Generic"
+    },
+    {
+        "name": "PLA Silk - Bronze",
+        "hex": "#78350f",
+        "type": "PLA Silk",
+        "brand": "Generic"
+    },
+    {
+        "name": "ABS - Vert Olive",
+        "hex": "#3f6212",
+        "type": "ABS",
+        "brand": "Generic"
+    },
+    {
+        "name": "ABS - Rouge Terne",
+        "hex": "#eb4634",
+        "type": "ABS",
+        "brand": "Generic"
+    },
+    {
+        "name": "ABS - Blanc",
+        "hex": "#fdfdfd",
+        "type": "ABS",
+        "brand": "Generic"
+    }
+]
