@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Image as ImageIcon, ZoomIn, X } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Image as ImageIcon, ZoomIn, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export function CreationsPage() {
     const [images, setImages] = useState([]);
@@ -17,8 +17,40 @@ export function CreationsPage() {
             };
         });
 
+        // Ensure stable order by sorting by path or name if needed, assuming default glob order is fine but unstable across systems sometimes.
+        // Let's sort to be consistent.
+        imageList.sort((a, b) => a.name.localeCompare(b.name));
+
         setImages(imageList);
     }, []);
+
+    const handleNext = useCallback((e) => {
+        e?.stopPropagation();
+        if (!selectedImage) return;
+        const currentIndex = images.findIndex(img => img.path === selectedImage.path);
+        const nextIndex = (currentIndex + 1) % images.length;
+        setSelectedImage(images[nextIndex]);
+    }, [selectedImage, images]);
+
+    const handlePrev = useCallback((e) => {
+        e?.stopPropagation();
+        if (!selectedImage) return;
+        const currentIndex = images.findIndex(img => img.path === selectedImage.path);
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        setSelectedImage(images[prevIndex]);
+    }, [selectedImage, images]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!selectedImage) return;
+            if (e.key === 'ArrowRight') handleNext();
+            if (e.key === 'ArrowLeft') handlePrev();
+            if (e.key === 'Escape') setSelectedImage(null);
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImage, handleNext, handlePrev]);
 
     return (
         <div className="h-full flex flex-col">
@@ -40,7 +72,7 @@ export function CreationsPage() {
             <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-20">
                 {images.map((img, index) => (
                     <div
-                        key={index}
+                        key={img.path}
                         className="break-inside-avoid relative group rounded-2xl overflow-hidden bg-white shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 cursor-zoom-in"
                         onClick={() => setSelectedImage(img)}
                     >
@@ -62,23 +94,54 @@ export function CreationsPage() {
 
             {/* Lightbox Modal */}
             {selectedImage && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0,0,0,0.9)' }}>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+                    {/* Close Button */}
                     <button
                         onClick={() => setSelectedImage(null)}
-                        className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors"
+                        className="absolute top-4 right-4 z-50 p-3 bg-black/50 hover:bg-white/20 text-white rounded-full transition-colors"
+                        title="Fermer (Échap)"
                     >
                         <X size={24} />
                     </button>
+
+                    {/* Navigation Buttons */}
+                    <button
+                        onClick={handlePrev}
+                        className="absolute left-4 z-50 p-3 bg-black/50 hover:bg-white/20 text-white rounded-full transition-colors hidden md:block"
+                        title="Image précédente (Flèche gauche)"
+                    >
+                        <ChevronLeft size={32} />
+                    </button>
+
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-4 z-50 p-3 bg-black/50 hover:bg-white/20 text-white rounded-full transition-colors hidden md:block"
+                        title="Image suivante (Flèche droite)"
+                    >
+                        <ChevronRight size={32} />
+                    </button>
+
+                    {/* Image Container */}
                     <div
-                        className="relative max-w-full max-h-full"
+                        className="relative w-full h-full flex items-center justify-center"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {/* Mobile Navigation Areas - invisible clickable zones */}
+                        <div className="absolute left-0 top-0 bottom-0 w-1/4 z-10 md:hidden" onClick={handlePrev}></div>
+                        <div className="absolute right-0 top-0 bottom-0 w-1/4 z-10 md:hidden" onClick={handleNext}></div>
+
                         <img
                             src={selectedImage.src}
                             alt={selectedImage.name}
-                            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl select-none"
                         />
+
+                        {/* Image Counter */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/50 text-white text-sm rounded-full backdrop-blur-md">
+                            {images.findIndex(img => img.path === selectedImage.path) + 1} / {images.length}
+                        </div>
                     </div>
+
                     {/* Backdrop click to close */}
                     <div className="absolute inset-0 -z-10" onClick={() => setSelectedImage(null)}></div>
                 </div>
